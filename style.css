@@ -1,0 +1,277 @@
+:root {
+  --bg1: #0f1724;
+  --bg2: #0b1220;
+  --card: rgba(255, 255, 255, 0.04);
+  --accent: #7dd3fc;
+  --muted: rgba(255, 255, 255, 0.6);
+  --radius: 14px;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(160deg, var(--bg1), var(--bg2));
+  color: #e6eef8;
+  line-height: 1.6;
+  padding: 36px;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Header */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent), #60a5fa);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #04263a;
+  font-weight: 800;
+  font-size: 20px;
+}
+
+nav a {
+  color: var(--muted);
+  text-decoration: none;
+  margin-left: 18px;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: var(--accent);
+}
+
+/* Hero */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 28px;
+  margin-top: 40px;
+  align-items: center;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: 0 8px 30px rgba(2, 6, 23, 0.6);
+}
+
+.intro h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.intro .accent {
+  color: var(--accent);
+}
+
+.intro p {
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.cta {
+  display: flex;
+  gap: 12px;
+}
+
+.btn {
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  background: linear-gradient(90deg, var(--accent), #60a5fa);
+  color: #04263a;
+}
+
+.btn.ghost {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Profile */
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #0ea5e9, #60a5fa);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #022433;
+  font-weight: 800;
+  font-size: 40px;
+}
+
+.profile small {
+  color: var(--muted);
+}
+
+/* Sections */
+section {
+  margin-top: 40px;
+}
+
+section h2 {
+  margin-bottom: 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.project {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  transition: background-color .3s ease, transform .3s ease;
+}
+
+.project:hover {
+    background-color: #002252;
+    transform: scale(1.03);
+}
+
+.project h3 {
+  margin: 0 0 8px 0;
+}
+
+.project p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.tags {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.tag {
+  font-size: 12px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--muted);
+}
+
+/* Footer */
+footer {
+  margin-top: 40px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+
+/* Modal fondo! */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.95);
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn .3s ease;
+}
+
+.modal-content {
+  max-width: 90%;
+  max-height: 85%;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.2);
+  animation: zoomIn .3s ease;
+}
+
+.close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.close:hover {
+  color: #bbb;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 50px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  transition: 0.3s;
+}
+.prev:hover, .next:hover {
+  color: #bbb;
+}
+.prev { left: 30px; }
+.next { right: 30px; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes zoomIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  nav {
+    display: none;
+  }
+}
