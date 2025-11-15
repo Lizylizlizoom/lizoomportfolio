@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Roblox Studio, 3D Models and Blender</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">LZ</div>
+        <h2>Lizoom</h2>
+      </div>
+      <nav>
+        <a href="#roblox">Roblox Studio</a>
+        <a href="#modelado">3D Models</a>
+        <a href="#animacion">Animation</a>
+        <a href="#contacto">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="intro">
+        <h1>Hi! I'm <span class="accent">Lizoom</span></h1>
+        <p>I specialize in development within <strong>Roblox Studio</strong>, creation of
+        <strong>3D Models</strong> with <strong>Blender / Substance Painter</strong>, and <strong>animations in Blender</strong>.</p>
+        <div class="cta">
+          <button class="btn" onclick="document.querySelector('#modelado').scrollIntoView({behavior:'smooth'})">See projects</button>
+          <button class="btn ghost" onclick="document.querySelector('#contacto').scrollIntoView({behavior:'smooth'})">Contact me</button>
+        </div>
+      </div>
+
+      <div class="card profile">
+        <div class="avatar">LZ</div>
+        <h3>Lizoom</h3>
+        <small>Game Developer · 3D Artist · Animator</small>
+      </div>
+    </section>
+
+    <!-- SECCIÓN ROBLOX -->
+    <section id="roblox">
+      <h2>Roblox Studio</h2>
+      <p>I develop systems and mechanics within Roblox Studio with <strong>Lua</strong>. I focus on optimizing scripts, visuals, and systems.</p>
+      <div class="grid">
+        <div class="project" onclick="showProject('roblox')">
+          <h3>Voxel Destruction System</h3>
+          <p>Advanced module for destruction with control of strength (impulse), size and restoration.</p>
+          <div class="tags">
+            <span class="tag">Lua</span>
+            <span class="tag">Physics</span>
+            <span class="tag">Modules</span>
+          </div>
+        </div>
+
+        <div class="project" onclick="showProject('robloxSpC')">
+          <h3>Combat System</h3>
+          <p>Special Combat System, "Awaken Style".</p>
+          <div class="tags">
+            <span class="tag">Lua</span>
+            <span class="tag">Animations</span>
+            <span class="tag">OOP</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN MODELADO -->
+    <section id="modelado">
+      <h2>3D Modeling & Substance Painter</h2>
+      <p>Detailed and optimized 3D models for video games. I work on textures on <strong>Substance Painter</strong> and with models on <strong>Blender / ZBrush</strong>.</p>
+      <div class="grid">
+        <div class="project" onclick="showProject('blender')">
+          <h3>Naruto</h3>
+          <p>Madara Gunbai.</p>
+          <div class="tags">
+            <span class="tag">3D</span>
+            <span class="tag">Substance</span>
+            <span class="tag">PBR</span>
+          </div>
+        </div>
+
+        <div class="project" onclick="showProject('jinwoodag')">
+          <h3>Solo Leveling</h3>
+          <p>Jin Woo dagger for an upcoming game.</p>
+          <div class="tags">
+            <span class="tag">Blender</span>
+            <span class="tag">Substance</span>
+          </div>
+        </div>
+
+        <div class="project" onclick="showProject('rudo')">
+          <h3>Gachiakuta</h3>
+          <p>Rudo outfit, made only for practice.</p>
+          <div class="tags">
+            <span class="tag">Blender</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECCIÓN ANIMACIONES -->
+    <section id="animacion">
+      <h2>Animations in Blender</h2>
+      <p>Combats, cutscenes, dances, etc.</p>
+      <div class="grid">
+        <div class="project" onclick="showProject('blenderMadara')">
+          <h3>Madara Susanoo</h3>
+          <p>Madara Meteorite Anim.</p>
+          <div class="tags">
+            <span class="tag">Blender</span>
+            <span class="tag">Rigging</span>
+          </div>
+        </div>
+
+        <div class="project" onclick="showProject('blenderYakuza')">
+          <h3>Finisher Cutscene</h3>
+          <p>Based on "Yakuza".</p>
+          <div class="tags">
+            <span class="tag">Cinematics</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN CONTACTO -->
+    <section id="contacto">
+      <h2>Contact</h2>
+      <p>You can write to me at <a href="mailto:lizoom.dev@gmail.com">lizoomfreelancer@gmail.com</a></p>
+      <p>Or send me a message on Discord! <strong>lizoom.</strong></p>
+    </section>
+
+    <!-- MODAL -->
+    <div id="imageModal" class="modal">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img class="modal-content" id="modalImage" />
+      <button class="prev" onclick="prevMedia()">&#10094;</button>
+      <button class="next" onclick="nextMedia()">&#10095;</button>
+    </div>
+
+    <footer>
+      <p>© 2025 Lizoom — Portfolio</p>
+    </footer>
+  </div>
+
+<script>
+  const modal = document.getElementById("imageModal");
+  const modalImg = document.getElementById("modalImage");
+
+  const modalVideo = document.createElement("video");
+  modalVideo.controls = true;
+  modalVideo.volume = false;
+  modalVideo.style.maxWidth = "90%";
+  modalVideo.style.maxHeight = "80vh";
+  modalVideo.style.borderRadius = "10px";
+  modalVideo.style.display = "none";
+  modal.appendChild(modalVideo);
+
+  let currentProject = [];
+  let currentIndex = 0;
+
+  const projects = {
+
+    roblox: [
+      "assets/VoxelDes.mp4"
+    ],
+
+    robloxSpC: [
+      "assets/SpecialCombat.mp4"
+    ],
+
+    blender: [
+      "assets/Gunbai1.png",
+      "assets/Gunbai2.png",
+    ],
+
+    blenderMadara: [
+      "assets/MadaraAnim.mp4"
+    ],
+
+    blenderYakuza: [
+      "assets/YakuzaAnim.mp4"
+    ],
+
+    jinwoodag: [
+      "assets/Dagger1.png",
+      "assets/Daggers2.png"
+    ],
+
+    rudo: [
+      "assets/Rudo1.png",
+      "assets/Rudo2.png",
+      "assets/Rudo3.png",
+    ]
+  };
+
+  function showProject(type) {
+    currentProject = projects[type];
+    if (!currentProject || !currentProject.length) return;
+    currentIndex = 0;
+    showMedia(currentProject[currentIndex]);
+    modal.style.display = "flex";
+  }
+
+  function showMedia(src) {
+    const isVideo = src.endsWith(".mp4") || src.endsWith(".webm") || src.endsWith(".mov");
+
+    modalImg.style.display = "none";
+    modalVideo.style.display = "none";
+    modalVideo.pause();
+
+    if (isVideo) {
+      modalVideo.src = src;
+      modalVideo.style.display = "block";
+      modalVideo.play();
+    } else {
+      modalImg.src = src;
+      modalImg.style.display = "block";
+    }
+  }
+
+  function closeModal() {
+    modal.style.display = "none";
+    modalVideo.pause();
+  }
+
+  function nextMedia() {
+    if (!currentProject.length) return;
+    currentIndex = (currentIndex + 1) % currentProject.length;
+    showMedia(currentProject[currentIndex]);
+  }
+
+  function prevMedia() {
+    if (!currentProject.length) return;
+    currentIndex = (currentIndex - 1 + currentProject.length) % currentProject.length;
+    showMedia(currentProject[currentIndex]);
+  }
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
+</script>
+
+
+</body>
+</html>
+
